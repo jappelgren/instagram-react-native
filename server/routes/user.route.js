@@ -23,10 +23,10 @@ router.post('/register', (req, res, next) => {
   const fullName = req.body.fullName;
   const email = req.body.email;
 
-  const queryText = `INSERT INTO "user" (username, password, full_name, last_name, email)
-    VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+  const queryText = `INSERT INTO "user" (username, password, full_name, email)
+    VALUES ($1, $2, $3, $4) RETURNING id`;
   pool
-    .query(queryText, [username, password, fullName, lastName, email])
+    .query(queryText, [username, password, fullName, email])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);
@@ -68,72 +68,27 @@ router.put('/updateUserProfile', (req, res) => {
     });
 });
 
-router.put('/upgradeUser', rejectUnauthenticated, (req, res, next) => {
-  const userId = req.user.id;
 
-  const userToUpgrade = req.body.userNumber;
+// router.get('/usersearch', rejectUnauthenticated, (req, res) => {
+//   const searchTerm = [`%${req.query.q}%`];
+//   console.log(searchTerm);
 
-  console.log(`upgrading ${userToUpgrade} to a Super User`);
+//   const queryText = `
+//     SELECT * FROM "user"
+//     WHERE "username" ILIKE $1
+//     OR "full_name" ILIKE $1
+//     OR "last_name" ILIKE $1;
+//   `;
 
-  const queryText = `
-  SELECT "user".auth_level FROM "user"
-  WHERE "user".id = $1;
-  `;
-
-  pool
-    .query(queryText, [userId])
-    .then((results) => {
-      let authLvl = results.rows[0].auth_level;
-      console.log('auth level:', authLvl);
-
-      if (authLvl === 2) {
-        const queryText = `
-      UPDATE "user" 
-      SET "auth_level" = 1
-      WHERE "user".id = $1;
-      `;
-
-        pool
-          .query(queryText, [userToUpgrade])
-          .then((result) => {
-            res.sendStatus(200);
-          })
-          .catch((error) => {
-            console.log(error);
-            res.sendStatus(500);
-          });
-      } else {
-        console.log('Could not upgrade user number:', userToUpgrade);
-
-        res.sendStatus(403);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
-});
-
-router.get('/usersearch', rejectUnauthenticated, (req, res) => {
-  const searchTerm = [`%${req.query.q}%`];
-  console.log(searchTerm);
-
-  const queryText = `
-    SELECT * FROM "user"
-    WHERE "username" ILIKE $1
-    OR "full_name" ILIKE $1
-    OR "last_name" ILIKE $1;
-  `;
-
-  pool
-    .query(queryText, searchTerm)
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch((err) => {
-      res.sendStatus(500);
-    });
-});
+//   pool
+//     .query(queryText, searchTerm)
+//     .then((result) => {
+//       res.send(result.rows);
+//     })
+//     .catch((err) => {
+//       res.sendStatus(500);
+//     });
+// });
 
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
