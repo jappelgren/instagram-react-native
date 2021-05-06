@@ -47,7 +47,7 @@ router.put('/updateUserProfile', (req, res) => {
 
   const queryText = `
   UPDATE "user" 
-  SET "full_name" = $2, "email" = $3, "profile_pic" = $4
+  SET "full_name" = $2, "email" = $3, "profile_pic" = $4, "bio" = $5
   WHERE "user".id = $1;
   `;
 
@@ -57,6 +57,7 @@ router.put('/updateUserProfile', (req, res) => {
       fullName,
       email,
       profilePic,
+      bio
     ])
     .then((result) => {
       res.sendStatus(200);
