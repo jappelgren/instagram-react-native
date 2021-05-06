@@ -1,4 +1,4 @@
-CREATE DATABASE instagran
+CREATE DATABASE instagram
 
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
