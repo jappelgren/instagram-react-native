@@ -1,4 +1,4 @@
-# Instagram clone
+# React Native Instagram clone
 
 
 
