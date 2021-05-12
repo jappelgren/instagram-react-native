@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
+import { useHistory } from 'react-router';
 
 export default function NavBar() {
   const styles = StyleSheet.create({
@@ -16,24 +23,40 @@ export default function NavBar() {
       height: 25,
     },
   });
+
+  const history = useHistory();
+
+  const handlePress = () => {
+    history.push('/profile');
+  };
+
   return (
     <View style={styles.container}>
-      <Image style={styles.icon} source={require('./iconmonstr-home-6-240.png')} />
+      <TouchableOpacity onPress={() => history.push('/')}>
+        <Image
+          style={styles.icon}
+          source={require('./img/iconmonstr-home-6-240.png')}
+        />
+      </TouchableOpacity>
       <Image
         style={styles.icon}
-        source={require('./iconmonstr-magnifier-2-240.png')}
+        source={require('./img/iconmonstr-magnifier-2-240.png')}
       />
       <Image
         style={styles.icon}
-        source={require('./iconmonstr-photo-camera-4-240.png')}
+        source={require('./img/iconmonstr-photo-camera-4-240.png')}
       />
       <Image
         style={styles.icon}
-        source={require('./iconmonstr-favorite-2-240.png')}
+        source={require('./img/iconmonstr-favorite-2-240.png')}
       />
-      {/* vv Placeholder for profile pic of user vv */}
-      <Image style={styles.icon} source={require('./iconmonstr-user-19-240.png')} />
-      {/* ^^ Placeholder for profile pic of user ^^ */}
+
+      <TouchableOpacity onPress={() => history.push('/profile')}>
+        <Image
+          style={styles.icon}
+          source={require('./img/iconmonstr-user-19-240.png')}
+        />
+      </TouchableOpacity>
     </View>
   );
 }

@@ -1,7 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { NativeRouter, Route } from 'react-router-native';
+import Feed from './src/screens/Feed/Feed.jsx';
 import NavBar from './src/screens/NavBar/NavBar.jsx';
+import Profile from './src/screens/Profile/Profile.jsx';
+import StatusBarComponent from './src/screens/StatusBar/StatusBarComponent.jsx';
+
 
 export default function App() {
   const styles = StyleSheet.create({
@@ -16,15 +20,20 @@ export default function App() {
     }
 
   });
+
+  console.log();
   return (
-    <View style={styles.mainContainer}>
-      <StatusBar style="auto" />
-      {/* vv placeholder vv */}
-      <ScrollView style={styles.mainView}>
-        <Text>Hi</Text>
-      </ScrollView>
-      {/* ^^ placeholder ^^ */}
-      <NavBar />
-    </View>
+    <NativeRouter>
+      <StatusBarComponent />
+      <View style={styles.mainContainer}>
+        <Route exact path='/'>
+          <Feed />
+        </Route>
+        <Route path='/profile'>
+          <Profile />
+        </Route>
+        <NavBar />
+      </View>
+    </NativeRouter>
   );
 }
