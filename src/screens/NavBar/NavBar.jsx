@@ -9,6 +9,7 @@ export default function NavBar() {
       width: '100%',
       justifyContent: 'space-around',
       alignItems: 'center',
+      backgroundColor: 'yellow',
     },
     icon: {
       width: 25,
@@ -17,21 +18,21 @@ export default function NavBar() {
   });
   return (
     <View style={styles.container}>
-      <Image style={styles.icon} source={require('./iconmonstr-home-6.svg')} />
+      <Image style={styles.icon} source={require('./iconmonstr-home-6-240.png')} />
       <Image
         style={styles.icon}
-        source={require('./iconmonstr-magnifier-2.svg')}
+        source={require('./iconmonstr-magnifier-2-240.png')}
       />
       <Image
         style={styles.icon}
-        source={require('./iconmonstr-photo-camera-4.svg')}
+        source={require('./iconmonstr-photo-camera-4-240.png')}
       />
       <Image
         style={styles.icon}
-        source={require('./iconmonstr-favorite-2.svg')}
+        source={require('./iconmonstr-favorite-2-240.png')}
       />
       {/* vv Placeholder for profile pic of user vv */}
-      <Image style={styles.icon} source={require('./iconmonstr-user-19.svg')} />
+      <Image style={styles.icon} source={require('./iconmonstr-user-19-240.png')} />
       {/* ^^ Placeholder for profile pic of user ^^ */}
     </View>
   );
