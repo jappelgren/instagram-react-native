@@ -38,18 +38,22 @@ export default function NavBar() {
           source={require('./img/iconmonstr-home-6-240.png')}
         />
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => history.push('/search')}>
       <Image
         style={styles.icon}
         source={require('./img/iconmonstr-magnifier-2-240.png')}
       />
+      </TouchableOpacity>
       <Image
         style={styles.icon}
         source={require('./img/iconmonstr-photo-camera-4-240.png')}
       />
+      <TouchableOpacity onPress={() => history.push('/favorites')}>
       <Image
         style={styles.icon}
         source={require('./img/iconmonstr-favorite-2-240.png')}
       />
+      </TouchableOpacity>
 
       <TouchableOpacity onPress={() => history.push('/profile')}>
         <Image

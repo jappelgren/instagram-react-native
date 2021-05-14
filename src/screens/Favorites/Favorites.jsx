@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text, ScrollView } from 'react-native';
 
-export default function Feed() {
+export default function Favorites() {
     return (
         <ScrollView style={{ flexGrow: 12 }}>
             <Text>
-                Hey whats up, its the feed
+                This is the favorites
             </Text>
         </ScrollView>
     )
