@@ -7,6 +7,7 @@ import Profile from './src/screens/Profile/Profile.jsx';
 import StatusBarComponent from './src/screens/StatusBar/StatusBarComponent.jsx';
 import Favorites from './src/screens/Favorites/Favorites.jsx';
 import Search from './src/screens/Search/Search';
+import Camera from './src/screens/Camera/Camera.jsx';
 
 
 export default function App() {
@@ -39,6 +40,9 @@ export default function App() {
         </Route>
         <Route exact path='/favorites'>
           <Favorites />
+        </Route>
+        <Route exact path='/camera'>
+          <Camera />
         </Route>
         <NavBar />
       </View>

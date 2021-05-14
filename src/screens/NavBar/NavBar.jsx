@@ -44,10 +44,12 @@ export default function NavBar() {
         source={require('./img/iconmonstr-magnifier-2-240.png')}
       />
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => history.push('/camera')}>
       <Image
         style={styles.icon}
         source={require('./img/iconmonstr-photo-camera-4-240.png')}
       />
+      </TouchableOpacity>
       <TouchableOpacity onPress={() => history.push('/favorites')}>
       <Image
         style={styles.icon}
@@ -61,6 +63,7 @@ export default function NavBar() {
           source={require('./img/iconmonstr-user-19-240.png')}
         />
       </TouchableOpacity>
+          
     </View>
   );
 }

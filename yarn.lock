@@ -7373,6 +7373,13 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
 
+"react-native-camera@^3.43.8":
+  "integrity" "sha512-OLQ0UfYaQz7VI8yLpYHFcsfg8R+zbsnxYrFxyVjfxOagqAllkFOgPI7eCf6S5HM119RQV6a+gAK2M2ZXzv8OvA=="
+  "resolved" "https://registry.npmjs.org/react-native-camera/-/react-native-camera-3.43.8.tgz"
+  "version" "3.43.8"
+  dependencies:
+    "prop-types" "^15.6.2"
+
 "react-native-safe-area-context@3.2.0":
   "integrity" "sha512-k2Nty4PwSnrg9HwrYeeE+EYqViYJoOFwEy9LxL5RIRfoqxAq/uQXNGwpUg2/u4gnKpBbEPa9eRh15KKMe/VHkA=="
   "resolved" "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-3.2.0.tgz"
