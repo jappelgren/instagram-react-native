@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 export default function StatusBarComponent() {
   return (
-    <View style={{ height: (Platform.OS === 'ios') ? 18 : 0 }}>
+    <View style={{ height: Platform.OS === 'ios' ? 18 : 25 }}>
       <StatusBar style="auto" />
     </View>
   );
