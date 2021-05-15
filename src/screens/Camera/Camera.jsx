@@ -1,8 +1,8 @@
 
-import React, { PureComponent, useState, useEffect } from 'react';
+import React, { PureComponent, useState, useEffect, useRef } from 'react';
 import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import Permissions from 'react-native-permissions';
+import Permissions from 'expo-permissions'
 
 export default function CameraApp() {
     let [flash, setFlash] = useState('off')
