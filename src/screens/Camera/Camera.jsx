@@ -45,24 +45,24 @@ export default function CameraApp() {
 }
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 12,
+    flex: 1,
   },
   camera: {
-    flexGrow: 12,
+    height: 662
   },
   buttonContainer: {
-    flex: 12,
+    flex: 1,
     backgroundColor: 'transparent',
     flexDirection: 'row',
     margin: 20,
   },
   button: {
-    flexGrow: .1,
+    flex: 0.1,
     alignSelf: 'flex-end',
     alignItems: 'center',
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
     color: 'white',
   },
 });

@@ -24,16 +24,12 @@ export default function App() {
 
   });
 
-  // const { currentPath } = useParams();
 
   console.log();
   return (
     <NativeRouter>
       <StatusBarComponent />
       <View style={styles.mainContainer}>
-        {/* <Text>
-          {currentPath}
-        </Text> */}
         <Route exact path='/'>
           <Feed />
         </Route>
