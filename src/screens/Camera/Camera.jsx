@@ -31,6 +31,7 @@ export default function CameraApp() {
   //   setCapturedImage(photo);
   // }
 
+
   const snap = async () => {
     if (!camera) return;
     let photo = await camera.takePictureAsync();
