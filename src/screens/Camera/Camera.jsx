@@ -7,6 +7,8 @@ import { Camera } from 'expo-camera';
 export default function CameraApp() {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const [capturedImage, setCapturedImage] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -22,9 +24,28 @@ export default function CameraApp() {
     return <Text>No access to camera</Text>;
   }
 
+  // const takePicture = async () => {
+  //   if (!Camera) return 
+  //   const photo = await Camera.takePictureAsync();
+  //   console.log(photo);
+  //   setPreviewVisible(true);
+  //   setCapturedImage(photo);
+  // }
+
+  const snap = async () => {
+    if (this.camera) {
+      let photo = await this.camera.takePictureAsync();
+    }
+  }
+
   return (
     <View>
-      <Camera style={styles.camera} type={type}>
+      <Camera 
+      style={styles.camera} 
+      type={type}
+      ref={ref => {
+        this.camera = ref;
+      }}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
@@ -38,6 +59,36 @@ export default function CameraApp() {
           >
             <Text style={styles.text}> Flip </Text>
           </TouchableOpacity>
+          <View
+        style={{
+        position: 'absolute',
+        bottom: 0,
+        flexDirection: 'row',
+        flex: 1,
+        width: '100%',
+        padding: 20,
+        justifyContent: 'space-between'
+        }}
+      >
+        <View
+        style={{
+        alignSelf: 'center',
+        flex: 1,
+        alignItems: 'center'
+        }}
+        >
+            <TouchableOpacity
+            onPress={snap}
+            style={{
+            width: 70,
+            height: 70,
+            bottom: 0,
+            borderRadius: 50,
+            backgroundColor: '#fff'
+            }}
+            />
+    </View>
+    </View>
         </View>
       </Camera>
     </View>
