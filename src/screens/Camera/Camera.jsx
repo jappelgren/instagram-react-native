@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Camera } from 'expo-camera';
-
-
+import * as MediaLibrary from 'expo-media-library';
 
 export default function CameraApp() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -25,7 +24,7 @@ export default function CameraApp() {
   }
 
   // const takePicture = async () => {
-  //   if (!Camera) return 
+  //   if (!Camera) return
   //   const photo = await Camera.takePictureAsync();
   //   console.log(photo);
   //   setPreviewVisible(true);
@@ -34,20 +33,20 @@ export default function CameraApp() {
 
 
   const snap = async () => {
-    if (this.camera) {
-      let photo = await this.camera.takePictureAsync();
-      // console.log(photo);
-    }
-  }
+    if (!camera) return;
+    let photo = await camera.takePictureAsync();
+    await MediaLibrary.saveToLibraryAsync(photo.uri);
+  };
 
   return (
     <View>
-      <Camera 
-      style={styles.camera} 
-      type={type}
-      ref={ref => {
-        this.camera = ref;
-      }}>
+      <Camera
+        style={styles.camera}
+        type={type}
+        ref={(ref) => {
+          camera = ref;
+        }}
+      >
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
@@ -62,35 +61,35 @@ export default function CameraApp() {
             <Text style={styles.text}> Flip </Text>
           </TouchableOpacity>
           <View
-        style={{
-        position: 'absolute',
-        bottom: 0,
-        flexDirection: 'row',
-        flex: 1,
-        width: '100%',
-        padding: 20,
-        justifyContent: 'space-between'
-        }}
-      >
-        <View
-        style={{
-        alignSelf: 'center',
-        flex: 1,
-        alignItems: 'center'
-        }}
-        >
-            <TouchableOpacity
-            onPress={snap}
             style={{
-            width: 70,
-            height: 70,
-            bottom: 0,
-            borderRadius: 50,
-            backgroundColor: '#fff'
+              position: 'absolute',
+              bottom: 0,
+              flexDirection: 'row',
+              flex: 1,
+              width: '100%',
+              padding: 20,
+              justifyContent: 'space-between',
             }}
-            />
-    </View>
-    </View>
+          >
+            <View
+              style={{
+                alignSelf: 'center',
+                flex: 1,
+                alignItems: 'center',
+              }}
+            >
+              <TouchableOpacity
+                onPress={snap}
+                style={{
+                  width: 70,
+                  height: 70,
+                  bottom: 0,
+                  borderRadius: 50,
+                  backgroundColor: '#fff',
+                }}
+              />
+            </View>
+          </View>
         </View>
       </Camera>
     </View>
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   camera: {
-    height: '100%'
+    height: '100%',
   },
   buttonContainer: {
     flex: 1,
