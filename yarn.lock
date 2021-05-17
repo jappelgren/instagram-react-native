@@ -2034,6 +2034,11 @@
   dependencies:
     invariant "^2.2.4"
 
+"@use-expo/permissions@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@use-expo/permissions/-/permissions-2.0.0.tgz#1befc01397eed277f24beda137b110721fbe4868"
+  integrity sha512-2g1H7spi5bvamx849V0mwEwU2EEpA+p5vbS9FfRMFB+zIAuzOFQmHxfN/1nJNebJW5auXQJYCpL6wan0AoZrdA==
+
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"
   resolved "https://registry.npmjs.org/abab/-/abab-2.0.5.tgz"
@@ -7281,11 +7286,6 @@ react-native-camera@^3.43.8:
   integrity sha512-OLQ0UfYaQz7VI8yLpYHFcsfg8R+zbsnxYrFxyVjfxOagqAllkFOgPI7eCf6S5HM119RQV6a+gAK2M2ZXzv8OvA==
   dependencies:
     prop-types "^15.6.2"
-
-react-native-permissions@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.0.3.tgz#aa90649728a9720b0de9cfcfdb447b35a6630de0"
-  integrity sha512-8xiEnU29qHZcT05XXwhPHiLChTt82Pn5Z/nFdDOYGNFZ+IYSbYeGmIxFpratCRO6dgLptNaDFDPiyw2X7UZTeg==
 
 react-native-safe-area-context@3.2.0:
   version "3.2.0"

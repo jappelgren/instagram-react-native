@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { NativeRouter, Route } from 'react-router-native';
+import { NativeRouter, Route, useParams } from 'react-router-native';
 import Feed from './src/screens/Feed/Feed.jsx';
 import NavBar from './src/screens/NavBar/NavBar.jsx';
 import Profile from './src/screens/Profile/Profile.jsx';
@@ -24,11 +24,16 @@ export default function App() {
 
   });
 
+  // const { currentPath } = useParams();
+
   console.log();
   return (
     <NativeRouter>
       <StatusBarComponent />
       <View style={styles.mainContainer}>
+        {/* <Text>
+          {currentPath}
+        </Text> */}
         <Route exact path='/'>
           <Feed />
         </Route>
@@ -45,6 +50,7 @@ export default function App() {
           <Camera />
         </Route>
         <NavBar />
+
       </View>
     </NativeRouter>
   );

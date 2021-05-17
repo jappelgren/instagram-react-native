@@ -1,66 +1,77 @@
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Camera } from 'expo-camera';
 
-import React, { PureComponent, useState, useEffect, useRef } from 'react';
-import { AppRegistry, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RNCamera } from 'react-native-camera';
-import Permissions from 'expo-permissions'
+
 
 export default function CameraApp() {
-    let [flash, setFlash] = useState('off')
-    let [zoom, setZoom] = useState(0)
-    let [autoFocus, setAutoFocus] = useState('on')
-    let [depth, setDepth] = useState(0)
-    let [type, setType] = useState('back')
-    let [permission, setPermission] = useState('undetermined')
-    let cameraRef = useRef(null)
-    useEffect(() => {
-        Permissions.check('photo').then(response => {
-        // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-        setPermission(response);
-        });
-    }, []);
+  const [hasPermission, setHasPermission] = useState(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
 
-    function toggleFlash() {
-        setFlash(flashModeOrder[flash])
-    }
-    function zoomOut() {
-        setZoom(zoom - 0.1 < 0 ? 0 : zoom - 0.1)
-    }
-    function zoomIn() {    
-        setZoom(zoom + 0.1 > 1 ? 1 : zoom + 0.1);
-    }
-    const takePicture = async() => {
-        if (cameraRef) {
-            const options = { quality: 0.5, base64: true };
-            const data = await cameraRef.current.takePictureAsync(soptions);
-            console.log(data.uri);  
-        }
-    };
-    return (
-      <View style={styles.container}>
-        <RNCamera
-          ref={cameraRef}
-          style={styles.preview}
-          type={type}
-          flashMode={flash}
-        />
-        <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-          <TouchableOpacity onPress={takePicture} style={styles.capture}>
-            <Text style={{ fontSize: 14 }}> SNAP </Text>
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+  return (
+    <View>
+      <Camera style={styles.camera} type={type}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              setType(
+                type === Camera.Constants.Type.back
+                  ? Camera.Constants.Type.front
+                  : Camera.Constants.Type.back
+              );
+            }}
+          >
+            <Text style={styles.text}> Flip </Text>
           </TouchableOpacity>
         </View>
-      </View>
-    );
+      </Camera>
+    </View>
+  );
 }
-
-
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 12,
+  },
+  camera: {
+    flexGrow: 12,
+  },
+  buttonContainer: {
+    flex: 12,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    margin: 20,
+  },
+  button: {
+    flexGrow: .1,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 20,
+    color: 'white',
+  },
+});
 // import React from 'react';
 // import {RNCamera, Camera} from 'react-native-camera';
 // import { View, Text, ScrollView } from 'react-native';
 
+// export default function Photo() {
 
-// export default function Photo() { 
-    
-    
 //     function takePicture(e) {
 //         const options = {};
 //         //options.location = ...
@@ -68,8 +79,6 @@ export default function CameraApp() {
 //           .then((data) => console.log(data))
 //           .catch(err => console.error(err));
 //       }
-    
-
 
 //     return (
 //         <View>
@@ -83,5 +92,4 @@ export default function CameraApp() {
 //       </View>
 //     )
 
-   
 // }

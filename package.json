@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@use-expo/permissions": "^2.0.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^1.4.0",
