@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useHistory } from 'react-router';
 
-export default function NavBar() {
+export default function NavBar({ cameraOn, setCameraOn }) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -26,8 +26,9 @@ export default function NavBar() {
 
   const history = useHistory();
 
-  const handlePress = () => {
-    history.push('/profile');
+  const handleCameraPress = () => {
+    setCameraOn(true);
+    history.push('/camera');
   };
 
   return (
@@ -39,22 +40,22 @@ export default function NavBar() {
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => history.push('/search')}>
-      <Image
-        style={styles.icon}
-        source={require('./img/iconmonstr-magnifier-2-240.png')}
-      />
+        <Image
+          style={styles.icon}
+          source={require('./img/iconmonstr-magnifier-2-240.png')}
+        />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => history.push('/camera')}>
-      <Image
-        style={styles.icon}
-        source={require('./img/iconmonstr-photo-camera-4-240.png')}
-      />
+      <TouchableOpacity onPress={handleCameraPress}>
+        <Image
+          style={styles.icon}
+          source={require('./img/iconmonstr-photo-camera-4-240.png')}
+        />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => history.push('/favorites')}>
-      <Image
-        style={styles.icon}
-        source={require('./img/iconmonstr-favorite-2-240.png')}
-      />
+        <Image
+          style={styles.icon}
+          source={require('./img/iconmonstr-favorite-2-240.png')}
+        />
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => history.push('/profile')}>
@@ -63,7 +64,6 @@ export default function NavBar() {
           source={require('./img/iconmonstr-user-19-240.png')}
         />
       </TouchableOpacity>
-          
     </View>
   );
 }
