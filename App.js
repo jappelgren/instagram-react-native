@@ -50,7 +50,7 @@ export default function App() {
           <Favorites />
         </Route>
         <Route exact path='/camera'>
-          <Camera />
+          <Camera setCameraOn={setCameraOn}/>
         </Route>
         {cameraOn ? null : <NavBar setCameraOn={setCameraOn} />}
         

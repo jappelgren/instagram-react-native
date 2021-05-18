@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
+import { useHistory } from 'react-router';
 
-export default function CameraApp() {
+export default function CameraApp({ setCameraOn }) {
+  const history = useHistory();
+
   const [hasPermission, setHasPermission] = useState(null);
   const [hasMediaPermission, setHasMediaPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -45,6 +48,11 @@ export default function CameraApp() {
   };
   console.log(capturedImage.uri);
 
+  const onExit = () => {
+    setCameraOn(false);
+    history.push('/');
+  };
+
   return (
     <View>
       {previewVisible ? 
@@ -55,10 +63,25 @@ export default function CameraApp() {
       <Camera
         style={styles.camera}
         type={type}
+        ratio={'1:1'}
         ref={(ref) => {
           camera = ref;
         }}
       >
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            alignItems: 'flex-end',
+            padding: 15,
+          }}
+        >
+          <TouchableOpacity onPress={onExit}>
+            <Text style={{ fontSize: 30, color: 'white', fontWeight: '200' }}>
+              X
+            </Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
