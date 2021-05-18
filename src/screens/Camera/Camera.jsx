@@ -48,12 +48,12 @@ export default function CameraApp({ setCameraOn }) {
     <View>
       {previewVisible ? 
       <View> 
-        <Image style={{height: '100%'}} source={{uri: `${capturedImage?.uri}`}} />
-        <View style={{width: '100%', flex: 1}}>
+        <View style={{width: '100%', flex: 1, zIndex: 999}}>
         <TouchableOpacity>
-          <Image style={{height: 100, width: 100, paddingTop: 20}} source={require('./img/iconmonstr-arrow-64-240 (1).png')} />
+          <Image style={{height: 25, width: 25, margin: 20}} source={require('./img/iconmonstr-arrow-64-240.png')} />
         </TouchableOpacity>
         </View>
+        <Image style={{height: '100%', zIndex: 1}} source={{uri: `${capturedImage?.uri}`}} />
       </View>
       :
       <Camera
