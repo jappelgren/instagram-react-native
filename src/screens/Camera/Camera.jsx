@@ -46,7 +46,6 @@ export default function CameraApp({ setCameraOn }) {
     setPreviewVisible(true);
     setCapturedImage(photo);
   };
-  console.log(capturedImage.uri);
 
   const onExit = () => {
     setCameraOn(false);
@@ -56,8 +55,13 @@ export default function CameraApp({ setCameraOn }) {
   return (
     <View>
       {previewVisible ? 
-      <View>
+      <View> 
         <Image style={{height: '100%'}} source={{uri: `${capturedImage?.uri}`}} />
+        <View style={{width: '100%', flex: 1}}>
+        <TouchableOpacity>
+          <Image style={{height: 100, width: 100, paddingTop: 20}} source={require('./img/iconmonstr-arrow-64-240 (1).png')} />
+        </TouchableOpacity>
+        </View>
       </View>
       :
       <Camera
