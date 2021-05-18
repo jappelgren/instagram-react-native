@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
 
@@ -8,7 +8,7 @@ export default function CameraApp() {
   const [hasMediaPermission, setHasMediaPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [previewVisible, setPreviewVisible] = useState(false);
-  const [capturedImage, setCapturedImage] = useState({});
+  const [capturedImage, setCapturedImage] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -34,14 +34,24 @@ export default function CameraApp() {
   //   setCapturedImage(photo);
   // }
 
+  let photo = 0;
+
   const snap = async () => {
     if (!camera) return;
-    let photo = await camera.takePictureAsync();
+    photo = await camera.takePictureAsync();
     await MediaLibrary.saveToLibraryAsync(photo.uri);
+    setPreviewVisible(true);
+    setCapturedImage(photo);
   };
+  console.log(capturedImage.uri);
 
   return (
     <View>
+      {previewVisible ? 
+      <View>
+        <Image style={{height: '100%'}} source={{uri: `${capturedImage?.uri}`}} />
+      </View>
+      :
       <Camera
         style={styles.camera}
         type={type}
@@ -94,6 +104,7 @@ export default function CameraApp() {
           </View>
         </View>
       </Camera>
+}
     </View>
   );
 }
