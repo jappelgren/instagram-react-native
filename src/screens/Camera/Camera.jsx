@@ -29,14 +29,6 @@ export default function CameraApp({ setCameraOn }) {
     return <Text>No access to camera</Text>;
   }
 
-  // const takePicture = async () => {
-  //   if (!Camera) return
-  //   const photo = await Camera.takePictureAsync();
-  //   console.log(photo);
-  //   setPreviewVisible(true);
-  //   setCapturedImage(photo);
-  // }
-
   let photo = 0;
 
   const snap = async () => {
@@ -63,7 +55,7 @@ export default function CameraApp({ setCameraOn }) {
       <Camera
         style={styles.camera}
         type={type}
-        ratio={'1:1'}
+        ratio={'16:9'}
         ref={(ref) => {
           camera = ref;
         }}
