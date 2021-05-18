@@ -44,12 +44,14 @@ export default function CameraApp({ setCameraOn }) {
     history.push('/');
   };
 
+  
+
   return (
     <View>
       {previewVisible ? 
       <View> 
         <View style={{width: '100%', flex: 1, zIndex: 999}}>
-        <TouchableOpacity>
+        <TouchableOpacity style={{height: 50, width: 50}} onPress={() => alert('you pressed the invisible button simeon')}>
           <Image style={{height: 25, width: 25, margin: 20}} source={require('./img/iconmonstr-arrow-64-240.png')} />
         </TouchableOpacity>
         </View>
