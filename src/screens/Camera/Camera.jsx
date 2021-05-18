@@ -5,6 +5,7 @@ import * as MediaLibrary from 'expo-media-library';
 
 export default function CameraApp() {
   const [hasPermission, setHasPermission] = useState(null);
+  const [hasMediaPermission, setHasMediaPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [capturedImage, setCapturedImage] = useState({});
@@ -12,7 +13,9 @@ export default function CameraApp() {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
+      const { mediaStatus } = await MediaLibrary.requestPermissionsAsync();
       setHasPermission(status === 'granted');
+      setHasMediaPermission(mediaStatus === 'granted');
     })();
   }, []);
 
@@ -30,7 +33,6 @@ export default function CameraApp() {
   //   setPreviewVisible(true);
   //   setCapturedImage(photo);
   // }
-
 
   const snap = async () => {
     if (!camera) return;
