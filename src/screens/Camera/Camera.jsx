@@ -52,8 +52,7 @@ export default function CameraApp({ setCameraOn }) {
       <View> 
         <Image style={{height: '100%', zIndex: 1}} source={{uri: `${capturedImage?.uri}`}} />
         <View style={{width: '100%', flex: 1, zIndex: 2, position: 'absolute'}}>
-        <TouchableOpacity style={{height: 50, width: 50}} onPress={() => alert('you pressed the invisible button simeon')}>
-          {/* <Text style={{color: 'white', fontSize: 25}}> {'<'} </Text> */}
+        <TouchableOpacity style={{height: 50, width: 50}} onPress={() => setPreviewVisible(false)}>
           <Image style={{height: 25, width: 25, margin: 20}} source={require('./img/iconmonstr-arrow-64-240.png')} resizeMode={'cover'}/>
         </TouchableOpacity>
         </View>
@@ -153,30 +152,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-// import React from 'react';
-// import {RNCamera, Camera} from 'react-native-camera';
-// import { View, Text, ScrollView } from 'react-native';
-
-// export default function Photo() {
-
-//     function takePicture(e) {
-//         const options = {};
-//         //options.location = ...
-//         e.camera.capture({metadata: options})
-//           .then((data) => console.log(data))
-//           .catch(err => console.error(err));
-//       }
-
-//     return (
-//         <View>
-//         <Camera
-//           ref={(cam) => {
-//             camera = cam;
-//           }}
-//           aspect={Camera.constants.Aspect.fill}>
-//           <Text onPress={(e) => takePicture.bind(e)}>[CAPTURE]</Text>
-//         </Camera>
-//       </View>
-//     )
-
-// }
