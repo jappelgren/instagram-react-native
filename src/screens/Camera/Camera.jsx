@@ -50,13 +50,13 @@ export default function CameraApp({ setCameraOn }) {
     <View>
       {previewVisible ? 
       <View> 
-        <View style={{width: '100%', flex: 1, zIndex: 2}}>
+        <Image style={{height: '100%', zIndex: 1}} source={{uri: `${capturedImage?.uri}`}} />
+        <View style={{width: '100%', flex: 1, zIndex: 2, position: 'absolute'}}>
         <TouchableOpacity style={{height: 50, width: 50}} onPress={() => alert('you pressed the invisible button simeon')}>
           {/* <Text style={{color: 'white', fontSize: 25}}> {'<'} </Text> */}
           <Image style={{height: 25, width: 25, margin: 20}} source={require('./img/iconmonstr-arrow-64-240.png')} resizeMode={'cover'}/>
         </TouchableOpacity>
         </View>
-        <Image style={{height: '100%', zIndex: 1}} source={{uri: `${capturedImage?.uri}`}} />
       </View>
       :
       <Camera
