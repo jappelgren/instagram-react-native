@@ -8,6 +8,7 @@ import StatusBarComponent from './src/screens/StatusBar/StatusBarComponent.jsx';
 import Favorites from './src/screens/Favorites/Favorites.jsx';
 import Search from './src/screens/Search/Search';
 import Camera from './src/screens/Camera/Camera.jsx';
+import Caption from './src/screens/Caption/Caption.jsx';
 
 
 export default function App() {
@@ -53,6 +54,9 @@ export default function App() {
           <Camera setCameraOn={setCameraOn}/>
         </Route>
         {cameraOn ? null : <NavBar setCameraOn={setCameraOn} />}
+        <Route exact path='/caption'>
+          <Caption />
+        </Route>
         
 
       </View>
