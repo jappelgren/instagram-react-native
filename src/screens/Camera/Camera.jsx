@@ -3,9 +3,12 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import { useHistory } from "react-router";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 export default function CameraApp({ setCameraOn }) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [hasPermission, setHasPermission] = useState(null);
   const [hasMediaPermission, setHasMediaPermission] = useState(null);
@@ -45,6 +48,7 @@ export default function CameraApp({ setCameraOn }) {
   };
 
   const goToCaption = () => {
+
     history.push('/caption');
   }
 
