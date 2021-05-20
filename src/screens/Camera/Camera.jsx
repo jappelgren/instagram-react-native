@@ -48,7 +48,7 @@ export default function CameraApp({ setCameraOn }) {
   };
 
   const goToCaption = () => {
-
+    dispatch({type: 'SET_PICTURE', payload: capturedImage.uri})
     history.push('/caption');
   }
 
