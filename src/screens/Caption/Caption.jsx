@@ -7,16 +7,19 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
 
 export default function Caption() {
   const picture = useSelector((state) => state.picture);
   const history = useHistory();
+  const dispatch = useDispatch()
+  
 
   const sharePost = () => {
-      alert("dumbass");
+      dispatch({type: 'ADD_A_POST', payload: {newPost: {url: picture, description: 'test'}}})
+      alert('sent')
     //   history.push('/feed');
   }
 

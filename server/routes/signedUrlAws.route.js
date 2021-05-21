@@ -4,6 +4,7 @@ const AWS = require('aws-sdk');
 require('dotenv').config();
 
 router.get('/', async (req, res) => {
+    console.log(req.body);
     AWS.config.update({
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
     });
     const params = {
         Bucket: 'simstagram',
-        Key: req.body.img,
+        Key: req.body,
         Expires: 30 * 60,
     };
     const options = {
