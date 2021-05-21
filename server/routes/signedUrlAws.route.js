@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
     const options = {
         signatureVersion: 'v4',
         region: 'us-east-1',
-        endpoint: new AWS.endpoint(simstagram.s3-accelerate.amazonaws.com),
+        endpoint: new AWS.Endpoint('simstagram.s3-accelerate.amazonaws.com'),
     }
-    const client = new AWS.s3(options)
+    const client = new AWS.S3(options)
     const signedURL = await (new Promise((resolve, reject) => {
         client.getSignedUrl('putObject', params, (err, data) => {      if (err) {
             reject(err)
@@ -34,3 +34,4 @@ router.get('/', async (req, res) => {
       })
 })
 
+module.exports = router

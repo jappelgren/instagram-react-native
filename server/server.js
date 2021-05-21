@@ -22,10 +22,11 @@ app.use(sessionMiddleware);
 const userRouter = require('./routes/user.route.js');
 const signedUrl = require('./routes/signedUrlAws.route.js');
 
+
 // ROUTES
 app.use('/api/user', userRouter);
-app.use('/api/posts', postsRouter);
-app.use('/api/signedUrl', postsRouter);
+// app.use('/api/posts', postsRouter);
+app.use('/api/signedUrl', signedUrl);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
