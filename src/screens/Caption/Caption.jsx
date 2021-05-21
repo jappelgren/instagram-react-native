@@ -11,7 +11,7 @@ export default function Caption() {
     return (
         <View>
             <Text>Write a Caption</Text>
-            <Image style={{width: 500, height: 'auto'}} source={{uri: picture}}/>
+            <Image style={{ height: '100%'}} source={{uri: `${picture}`}}/>
         </View>
     )
 }
