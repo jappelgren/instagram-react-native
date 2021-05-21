@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from "react-native";
 import {useSelector} from 'react-redux';
 
 
@@ -10,8 +10,13 @@ export default function Caption() {
 
     return (
         <View>
-            <Text>Write a Caption</Text>
-            <Image style={{ height: '100%'}} source={{uri: `${picture}`}}/>
+            <Image style={{ height: 400, width: 400, resizeMode: 'contain' }} source={{uri: `${picture}`}}/>
+            <TextInput
+            label="Caption"
+            type="outlined"
+            >
+                write a caption for your shitty picture
+            </TextInput>
         </View>
     )
 }
