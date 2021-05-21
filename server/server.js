@@ -20,6 +20,7 @@ app.use(sessionMiddleware);
 
 // Route includes
 const userRouter = require('./routes/user.route.js');
+const postsRouter = require('./routes/posts.route.js');
 
 // ROUTES
 app.use('/api/user', userRouter);
