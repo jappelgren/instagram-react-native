@@ -17,6 +17,7 @@ export default function Caption() {
 
   const sharePost = () => {
       alert("dumbass");
+    //   history.push('/feed');
   }
 
   return (
