@@ -5,13 +5,14 @@ const {
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.post('/', rejectUnauthenticated, (req, res) => {
+router.post('/', (req, res) => {
     const newPost = req.body.newPost;
+    console.log(newPost)
 
-    const sqlQuery = `INSERT INTO "posts" ("image", "description", "user_id")
-                      VALUES ($1, $2, $3);`
+    const sqlQuery = `INSERT INTO "posts" ("image", "description")
+                      VALUES ($1, $2);`
 
-    pool.query(sqlQuery, [newPost.url, newPost.description, req.user.id])
+    pool.query(sqlQuery, [newPost.url, newPost.description])
     .then((result) => {
         res.sendStatus(200);
     })
