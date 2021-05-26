@@ -6,6 +6,7 @@ import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './src/redux/reducers/_root.reducer';
+import rootSaga from "./src/redux/sagas/_root.saga";
 import Camera from "./src/screens/Camera/Camera.jsx";
 import Caption from "./src/screens/Caption/Caption.jsx";
 import Favorites from "./src/screens/Favorites/Favorites.jsx";
@@ -14,6 +15,9 @@ import NavBar from "./src/screens/NavBar/NavBar.jsx";
 import Profile from "./src/screens/Profile/Profile.jsx";
 import Search from "./src/screens/Search/Search";
 import StatusBarComponent from "./src/screens/StatusBar/StatusBarComponent.jsx";
+
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Unable to symbolicate']); // Ignore log notification by message
 
 
 
@@ -41,6 +45,9 @@ export default function App() {
     rootReducer,
     applyMiddleware(...middlewareList)
   );
+
+sagaMiddleware.run(rootSaga);
+
 
   console.log();
   return (
