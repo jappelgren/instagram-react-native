@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     });
     const params = {
         Bucket: 'simstagram',
-        Key: req.body,
+        Key: req.params.url,
         Expires: 30 * 60,
     };
     const options = {

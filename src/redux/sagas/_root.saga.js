@@ -5,6 +5,5 @@ import user from './user.saga';
 export default function* rootSaga() {
     yield all([
         postsSaga(),
-        user()
     ]);
 }
